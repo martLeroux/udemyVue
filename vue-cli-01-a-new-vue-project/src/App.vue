@@ -2,8 +2,7 @@
 <section>
   <h2>My friends</h2>
   <ul>
-    <friend-contact name="Manuel Lorenz" phone-number="514 654-8245" email-address="manuel@localhost.com" is-favorite="1"></friend-contact>
-    <friend-contact name="Julie Jones" phone-number="514 123-1234" email-address="julie@localhost.com" is-favorite="0"></friend-contact> 
+    <friend-contact v-for="friend in friends" :key="friend.id" :name="friend.name" :phone-number="friend.phone" :email-address="friend.email" v-bind:is-favorite="friend.isFavorite"></friend-contact>
   </ul>
 </section>
 </template>
@@ -17,13 +16,15 @@ export default {
           id: "manuel",
           name: "Manuel Lorenz",
           phone: "514 828-2303",
-          email: "manuel@localhost.com"
+          email: "manuel@localhost.com",
+          isFavorite: true
         },
         {
           id: "julie",
           name: "Julie Jones",
           phone: "514 929-9290",
-          email: "julie@localhost.com"
+          email: "julie@localhost.com",
+          isFavorite: false
         }
       ]
     };
