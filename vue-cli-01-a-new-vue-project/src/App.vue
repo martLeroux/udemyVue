@@ -3,7 +3,7 @@
   <h2>My friends</h2>
   <new-friend @add-contact="addContact"></new-friend>
   <ul>
-    <friend-contact v-for="friend in friends" :key="friend.id" :id="friend.id" :name="friend.name" :phone-number="friend.phone" :email-address="friend.email" v-bind:is-favorite="friend.isFavorite" @toggle-favorite="toggleFavoriteStatus"></friend-contact>
+    <friend-contact v-for="friend in friends" :key="friend.id" :id="friend.id" :name="friend.name" :phone-number="friend.phone" :email-address="friend.email" v-bind:is-favorite="friend.isFavorite" @toggle-favorite="toggleFavoriteStatus" @delete-contact="deleteContact"></friend-contact>
   </ul>
 </section>
 </template>
@@ -46,6 +46,9 @@ export default {
         isFavorite: false
       };
       this.friends.push(newFriendContact);
+    },
+    deleteContact(friendId) {
+      this.friends = this.friends.filter(friend => friend.id !== friendId);
     }
   }
 };
