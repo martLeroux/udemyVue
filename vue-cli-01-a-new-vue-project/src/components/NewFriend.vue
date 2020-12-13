@@ -14,7 +14,7 @@
     </div>
     <div>
       <button>Add contact</button>
-      </div>
+    </div>
   </form>
 </template>
 
