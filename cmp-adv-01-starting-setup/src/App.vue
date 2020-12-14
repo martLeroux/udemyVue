@@ -12,11 +12,13 @@
 </template>
 
 <script>
+import TheHeader from "./components/layout/TheHeader.vue";
 import ActiveGoals from "./components/ActiveGoals.vue";
 import ManageGoals from "./components/ManageGoals.vue";
 
 export default {
   components: {
+    TheHeader,
     ActiveGoals,
     ManageGoals
   },
