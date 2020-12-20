@@ -10,10 +10,10 @@
 import LearningResource from './LearningResource';
 
 export default {
+  inject: ['resources'],
   components: {
     LearningResource
-  },
-  props: ['resources']
+  }
 };
 </script>
 
