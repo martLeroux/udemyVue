@@ -55,6 +55,9 @@
       </div>
       
     </div>
+    <div class="form-control">
+      <rating-control></rating-control>
+    </div>
     <div>
       <button @click="submitForm">Save Data</button>
     </div>
@@ -62,7 +65,11 @@
 </template>
 
 <script>
+import RatingControl from './RatingControl.vue';
 export default {
+  components: {
+    RatingControl
+  },
   data() {
     return {
       userName: '',
