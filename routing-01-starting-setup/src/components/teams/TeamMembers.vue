@@ -46,6 +46,12 @@ export default {
       this.teamName = selectedTeam.name;
     }
   },
+  beforeRouteUpdate(to, from, next) {
+    console.log('TeamsMembers Cmp beforeRoute');
+    console.log(to, from);
+    //this.loadTeamMember(to.params.teamId);
+    next();
+  },
   watch: {
     teamId(newId) {
       this.loadTeamMember(newId);
