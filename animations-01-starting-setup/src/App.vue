@@ -4,15 +4,17 @@
     <button @click="animateBlock">Animate</button>
   </div>
   <div class="container">
-    <transition>
-      <p v-if="paraIsVisible">This is only sometimes visible</p>
+    <transition name="para">
+      <p class="myPara" v-if="paraIsVisible">This is only sometimes visible</p>
     </transition>
     <button @click="toggleParagraph">Toggle Paragraph</button>
   </div>
-  <base-modal @close="hideDialog" v-if="dialogIsVisible">
-    <p>This is a test dialog!</p>
-    <button @click="hideDialog">Close it!</button>
-  </base-modal>
+  <transition name="modal">
+    <base-modal @close="hideDialog" :open="dialogIsVisible">
+      <p>This is a test dialog!</p>
+      <button @click="hideDialog">Close it!</button>
+    </base-modal>
+  </transition>
   <div class="container">
     <button @click="showDialog">Show Dialog</button>
   </div>
@@ -92,29 +94,32 @@ button:active {
   animation: slideFade 1s ease-out forwards;
 }
 
-.v-enter-from {
+.para-enter-from {
   /*opacity: 0;
   transform: translateY(-30px);*/
 }
-.v-enter-active {
-  animation: slideFade 1s ease-in;
+.para-enter-active {
+  animation: slideFade 1s ease-in forwards;
 }
-.v-enter-to {
+.para-enter-to,
+.myPara {
   /*opacity: 1;
   transform: translateY(0);*/
+  transform: translateX(-150px) scale(1);
 }
 
-.v-leave-from {
+.para-leave-from {
   /*opacity: 1;
   transform: translateY(0);*/
+  transform: translateX(-150px) scale(1);
 }
 
-.v-leave-active {
+.para-leave-active {
   /*transition: all 1s ease-in;*/
-  animation: slideFade 1s ease-in;
+  animation: slideFade 1s ease-in reverse;
 }
 
-.v-leave-to {
+.para-leave-to {
   /*opacity: 0;
   transform: translateY(30px);*/
 }
