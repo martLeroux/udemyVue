@@ -1,38 +1,9 @@
 <template>
-  <div class="container">
-    <div class="block" :class="{animate: animatedBlock}"></div>
-    <button @click="animateBlock">Animate</button>
-  </div>
-  <div class="container" >
-    <transition 
-      name="para" 
-      @before-enter="beforeEnter"
-      @enter="enter"
-      @after-enter="afterEnter"
-      @before-leave="beforeLeave" 
-      @leave="leave"  
-      @after-leave="afterLeave"
-      @enter-cancelled="enterCancelled"
-      @leave-cancelled="leaveCancelled">
-      <p class="myPara" v-if="paraIsVisible">This is only sometimes visible</p>
-    </transition>
-    <button @click="toggleParagraph">Toggle Paragraph</button>
-  </div>
-  <div class="container">
+  <router-view v-slot="slotProps">
     <transition name="fade-button" mode="out-in">
-      <button @click="showUsers" v-if="!usersAreVisible">Show users</button>
-      <button @click="hideUsers" v-else>Hide users</button>
+      <component :is="slotProps.Component"></component>
     </transition>
-  </div>
-  <transition name="modal" >
-    <base-modal @close="hideDialog" :open="dialogIsVisible">
-      <p>This is a test dialog!</p>
-      <button @click="hideDialog">Close it!</button>
-    </base-modal>
-  </transition>
-  <div class="container">
-    <button @click="showDialog">Show Dialog</button>
-  </div>
+  </router-view>
 </template>  
 
 <script>
@@ -101,7 +72,6 @@ export default {
     beforeLeave(el) {
       console.log('beforeLeave');
       console.log(el);
-      el.style.opacity = 1;
     },
     leave(el, done) {
       console.log('leave');
@@ -196,5 +166,16 @@ button:active {
   100% {
     transform: translateX(-150px) scale(1);
   }
+}
+
+.route-enter-from {
+}
+.route-enter-active {
+  animation: slideFade 0.5s ease-out;
+}
+.route-enter-to {
+}
+.route-leave-active {
+  animation: slideFade 0.5s ease-in;
 }
 </style>
