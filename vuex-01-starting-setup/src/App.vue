@@ -1,7 +1,7 @@
 <template>
   <base-container title="Vuex">
     <the-counter></the-counter>
-    <button @click="addOne">Add 1</button>
+    <button @click="addTen">Add 10</button>
     <change-counter></change-counter>
   </base-container>
 </template>
@@ -23,8 +23,13 @@ export default {
     }
   },
   methods: {
-    addOne() {
-      this.$store.commit('increment');
+    addTen() {
+      this.$store.commit('increase', { value: 10 });
+      /* or
+      this.$store.commit({
+        type: 'increase', 
+        value: 10
+      });*/
     }
   }
 };
