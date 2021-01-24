@@ -6,7 +6,7 @@
 export default {
   methods: {
     addTwo() {
-      this.$store.commit('increase', { value: 2 });
+      this.$store.dispatch('increase', { value: 2 });
     }
   }
 };
