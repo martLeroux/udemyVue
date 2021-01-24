@@ -1,5 +1,5 @@
 <template>
-  <button @click="addTwo">Add 2 </button>
+  <button @click="addTwo">Add 2 * 2</button>
 </template>
 
 <script>
