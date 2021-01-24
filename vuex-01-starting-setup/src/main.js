@@ -3,12 +3,11 @@ import { createStore } from 'vuex';
 
 import App from './App.vue';
 
-const store = createStore({
+const counterModule = {
   state() {
     return {
       counter: 0,
-      isLoggedIn: false
-    };
+    }
   },
   mutations: {
     increment(state) {
@@ -17,11 +16,6 @@ const store = createStore({
     increase(state, payload) {
       state.counter = state.counter + payload.value;
     },
-    loginOrLogOut(state, payload) {
-
-      state.isLoggedIn = payload.isLoggedIn;
-      console.log(state.isLoggedIn);
-    }
   },
   actions: {
     increment(context) {
@@ -35,10 +29,6 @@ const store = createStore({
         context.commit('increase', payload);
       }, 2000);
     },
-    loginOrLogOut(context, payload) {
-      console.log('loginOrLogOut action');
-      context.commit('loginOrLogOut', payload);
-    }
   },
   getters: {
     finalCounter(state) {
@@ -54,6 +44,31 @@ const store = createStore({
         return finalCounter;
       }
     },
+  }
+}
+
+const store = createStore({
+  modules: {
+    counter: counterModule
+  },
+  state() {
+    return {
+      isLoggedIn: false
+    };
+  },
+  mutations: {
+    loginOrLogOut(state, payload) {
+      state.isLoggedIn = payload.isLoggedIn;
+      console.log(state.isLoggedIn);
+    }
+  },
+  actions: {
+    loginOrLogOut(context, payload) {
+      console.log('loginOrLogOut action');
+      context.commit('loginOrLogOut', payload);
+    }
+  },
+  getters: {
     isLoggedIn(state) {
       return state.isLoggedIn;
     }
