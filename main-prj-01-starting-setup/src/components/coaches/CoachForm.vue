@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="submitForm">
+  <form  @submit.prevent="submitForm">
     <div class="form-control">
       <label for="firstname">First Name</label>
       <input type="text" id="firstname" v-model.trim="firstname"/>
@@ -43,6 +43,7 @@
 
 <script>
 export default {
+  emits: ['save-data'],
   data() {
     return {
       firstname: '',
@@ -61,7 +62,8 @@ export default {
         rate: this.rate,
         areas: this.areas
       };
-      console.log(formData);
+      console.log('yo');
+      this.$emit('save-data', formData);
     }
   }
 };
