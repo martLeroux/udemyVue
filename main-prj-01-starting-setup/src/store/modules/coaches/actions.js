@@ -21,5 +21,31 @@ export default {
     }
 
     context.commit('registerCoach', { ...coachData, id: userId });
+  },
+  async loadCoaches(context) {
+    const response = await fetch(`https://vue-main-project-57792-default-rtdb.firebaseio.com/coaches.json`);
+    const responseData = await response.json();
+
+    console.log(responseData);
+
+    if (!response.ok) {
+      //...
+    }
+
+    //parce qu'on recoit un objet et qu'on a besoin de mettre ça dans un array
+    const coaches = [];
+    for (const key in responseData) {
+      const coach = {
+        id: key,
+        firstName: responseData[key].firstName,
+        lastName: responseData[key].lastName,
+        description: responseData[key].description,
+        hourlyRate: responseData[key].hourlyRate,
+        areas: responseData[key].areas
+      }
+      coaches.push(coach);
+    }
+
+    context.commit('setCoaches', coaches);
   }
 }
