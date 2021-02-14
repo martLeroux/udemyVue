@@ -22,7 +22,12 @@ export default {
 
     context.commit('registerCoach', { ...coachData, id: userId });
   },
-  async loadCoaches(context) {
+  async loadCoaches(context, payload) {
+    //si le lastFetch est récent, on fait rien. On garde ce qu'on a dans le store
+    if (!payload.forceRefresh && !context.getters.shouldUpdate) {
+      return
+    }
+
     const response = await fetch(`https://vue-main-project-57792-default-rtdb.firebaseio.com/coaches.json`);
     const responseData = await response.json();
 
@@ -48,5 +53,6 @@ export default {
     }
 
     context.commit('setCoaches', coaches);
+    context.commit('setFetchTimestamp');
   }
 }
