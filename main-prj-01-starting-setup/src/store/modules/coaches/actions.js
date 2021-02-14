@@ -29,7 +29,8 @@ export default {
     console.log(responseData);
 
     if (!response.ok) {
-      //...
+      const error = new Error(responseData.message || 'Failed to fetch');
+      throw error
     }
 
     //parce qu'on recoit un objet et qu'on a besoin de mettre ça dans un array
