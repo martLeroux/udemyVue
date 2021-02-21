@@ -1,10 +1,10 @@
 <template>
-<section>
-  <base-card>
-    <h2>Registration as a coach now!</h2>
-    <coach-form @save-data="saveData" />
-  </base-card>
-</section>
+  <section>
+    <base-card>
+      <h2>Registration as a coach now!</h2>
+      <coach-form @save-data="saveData" />
+    </base-card>
+  </section>
 </template>
 
 <script>
