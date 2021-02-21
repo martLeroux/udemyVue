@@ -65,22 +65,22 @@ export default {
       }
 
       this.isLoading = true;
+      const actionPayload = {
+        email: this.email,
+        password: this.password
+      };
 
       try {
         if (this.mode === 'login') {
-          //rien pour l'instant
+          await this.$store.dispatch('login', actionPayload); // le module n'est pas namespacé
         } else {
-          await this.$store.dispatch('signup', {
-            email: this.email,
-            password: this.password
-          }); // le module n'est pas namespacé
-
-          this.isLoading = false;
+          await this.$store.dispatch('signup', actionPayload); // le module n'est pas namespacé
         }
       } catch (err) {
-        this.isLoading = false;
         this.error = err.message || 'Failed to authenticate, try later.';
       }
+
+      this.isLoading = false;
     },
     switchAuthMode() {
       if (this.mode === 'login') {
