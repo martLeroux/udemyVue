@@ -15,5 +15,6 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_VUE_MAIN_PROJECT_57792 }}'
           projectId: vue-main-project-57792
           entryPoint: "./main-prj-01-starting-setup" 
+          channelId: live
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
