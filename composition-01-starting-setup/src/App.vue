@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { reactive } from 'vue';
 import { setTimeout } from 'timers';
 
 export default {
@@ -14,7 +14,7 @@ export default {
     //const userName = ref('Maximilian');
     //const uAge = ref(31);
 
-    const user = ref({
+    const user = reactive({
       name: 'Maximilian',
       uAge: 31
     });
@@ -26,8 +26,8 @@ export default {
     return { userName, uAge };*/
 
     setTimeout(() => {
-      user.value.name = 'Martin';
-      user.value.uAge = 35;
+      user.name = 'Martin';
+      user.uAge = 35;
     }, 2000);
     return { user };
   }
