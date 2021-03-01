@@ -5,7 +5,8 @@
     <button @click="setNewData">Change age</button>
     <div>
       <input type="text" placeholder="First Name" v-model="firstName" />
-      <input type="text" placeholder="Last Name" v-model="lastName" />
+      <input type="text" placeholder="Last Name" v-model="lastName" ref="lastNameInput" />
+      <button @click="setLastName">Set LastName</button>
     </div>
   </section>
 </template>
@@ -20,6 +21,7 @@ export default {
     const firstName = ref('');
     const lastName = ref('');
     const uAge = ref(31);
+    const lastNameInput = ref(null);
 
     /*const user = reactive({
       name: 'Maximilian',
@@ -40,6 +42,11 @@ export default {
       uAge.value = 38;
     }
 
+    function setLastName() {
+      //un peu étrange mais .value pour avoir accès au ref de lastNameInput et un autre .value pour avoir la value de l'input
+      lastName.value = lastNameInput.value.value;
+    }
+
     /*setTimeout(() => {
       userName.value = 'Martin';
       uAge.value = 35;
@@ -49,9 +56,10 @@ export default {
     return {
       userName,
       firstName,
-      lastName,
+      lastNameInput,
       uAge,
-      setNewData
+      setNewData,
+      setLastName
     };
   }
   /*data() {
