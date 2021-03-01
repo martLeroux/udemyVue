@@ -4,14 +4,14 @@
     <h3>{{ uAge }}</h3>
     <button @click="setNewData">Change age</button>
     <div>
-      <input type="text" placeholder="First Name" @input="setFirstName" />
-      <input type="text" placeholder="Last Name" @input="setLastName" />
+      <input type="text" placeholder="First Name" v-model="firstName" />
+      <input type="text" placeholder="Last Name" v-model="lastName" />
     </div>
   </section>
 </template>
 
 <script>
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 //import { reactive } from 'vue';
 
 export default {
@@ -30,16 +30,14 @@ export default {
       return firstName.value + ' ' + lastName.value;
     });
 
+    watch([uAge, userName], (newValues, oldValues) => {
+      console.log('Old age: ' + oldValues[0]);
+      console.log('New age: ' + newValues[0]);
+      console.log('New name: ' + newValues[1]);
+    });
+
     function setNewData() {
       uAge.value = 38;
-    }
-
-    function setFirstName(event) {
-      firstName.value = event.target.value;
-    }
-
-    function setLastName(event) {
-      lastName.value = event.target.value;
     }
 
     /*setTimeout(() => {
@@ -53,9 +51,7 @@ export default {
       firstName,
       lastName,
       uAge,
-      setNewData,
-      setFirstName,
-      setLastName
+      setNewData
     };
   }
   /*data() {
