@@ -47,9 +47,9 @@ export default {
 
     watch(enteredSearchTerm, function(newValue) {
       setTimeout(() => {
-        //if (newValue === enteredSearchTerm.value) {
-        activeSearchTerm.value = newValue;
-        //}
+        if (newValue === enteredSearchTerm.value) {
+          activeSearchTerm.value = newValue;
+        }
       }, 300);
     });
 
